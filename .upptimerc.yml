@@ -22,19 +22,23 @@ sites:
 
 status-website:
   cname: status.droovin.com
-  logoUrl: https://droovin.com/logo.svg
+  logoUrl: https://droovin.com/favicon.svg
   name: Droovin Status
-  introTitle: "**Droovin Status** — el estado en tiempo real de los servicios que tu tienda usa."
-  introMessage: Verificamos cada minuto que todo esté funcionando. Si ves algún componente caído, ya estamos trabajando para resolverlo. Para soporte directo, escríbenos a soporte@droovin.com.
+  introTitle: "El estado en tiempo real de los servicios de Droovin."
+  introMessage: Verificamos cada minuto que todo esté funcionando. Si ves algún componente caído, ya estamos trabajando para resolverlo.
   navbar:
     - title: Estado
       href: /
-    - title: Droovin
+    - title: Volver a Droovin
       href: https://droovin.com
-  # Esconde el footer "powered by Upptime" + link al repo en github.com.
-  # Upptime no tiene flag nativo para sacarlo, pero permite inyectar CSS.
   customCSS: |
+    /* Ocultar footer con link al repo de GitHub */
     footer { display: none !important; }
+    /* Logo del navbar — el wordmark de droovin.com es muy ancho. Constrenir
+       a tamaño icono y ocultar el texto duplicado "Droovin Status" del navbar
+       (el title sigue mostrándose en el <h1> del intro). */
+    nav img { max-height: 28px; width: auto; }
+    nav .logo > div { display: none; }
 
 assignees:
   - figueroabonacic
