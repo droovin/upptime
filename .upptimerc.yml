@@ -1,31 +1,66 @@
-# Change these first
-owner: upptime # Your GitHub organization or username, where this repository lives
-repo: upptime # The name of this repository
+owner: droovin
+repo: upptime
 
 sites:
-  - name: Google
-    url: https://www.google.com
-  - name: Wikipedia
-    url: https://en.wikipedia.org
-  - name: Hacker News
-    url: https://news.ycombinator.com
-  - name: Test Broken Site
-    url: https://thissitedoesnotexist.koj.co
+  - name: API
+    url: https://api.droovin.com/api/health
+    expectedStatusCodes:
+      - 200
+  - name: Admin
+    url: https://admin.droovin.com
+    expectedStatusCodes:
+      - 200
+  - name: Storefront platform
+    url: https://demo-store.droovin.com
+    expectedStatusCodes:
+      - 200
+      - 404
+  - name: Landing
+    url: https://droovin.com
+    expectedStatusCodes:
+      - 200
+  - name: Superadmin
+    url: https://ops.droovin.com
+    expectedStatusCodes:
+      - 200
+      - 401
 
 status-website:
-  # Add your custom domain name, or remove the `cname` line if you don't have a domain
-  # Uncomment the `baseUrl` line if you don't have a custom domain and add your repo name there
-  cname: demo.upptime.js.org
-  # baseUrl: /your-repo-name
-  logoUrl: https://raw.githubusercontent.com/upptime/upptime.js.org/master/static/img/icon.svg
-  name: Upptime
-  introTitle: "**Upptime** is the open-source uptime monitor and status page, powered entirely by GitHub."
-  introMessage: This is a sample status page which uses **real-time** data from our [GitHub repository](https://github.com/upptime/upptime). No server required — just GitHub Actions, Issues, and Pages. [**Get your own for free**](https://github.com/upptime/upptime)
+  cname: status.droovin.com
+  logoUrl: https://droovin.com/favicon.svg
+  name: Droovin Status
+  introTitle: "**Droovin Status** — el estado en tiempo real de los servicios que tu tienda usa."
+  introMessage: Monitoreamos cada minuto desde GitHub Actions. Si ves algún componente caído, ya estamos trabajando para resolverlo. Para soporte directo, escríbenos a soporte@droovin.com.
   navbar:
-    - title: Status
+    - title: Estado
       href: /
-    - title: GitHub
-      href: https://github.com/$OWNER/$REPO
+    - title: Droovin
+      href: https://droovin.com
 
-# Upptime also supports notifications, assigning issues, and more
-# See https://upptime.js.org/docs/configuration
+assignees:
+  - figueroabonacic
+
+notifications:
+  - type: slack
+    channel: alertas
+    url: "$SLACK_WEBHOOK_URL"
+
+# Subir sample interval default a 5min (es el mínimo de GH Actions cron).
+# Bajar tasa de noise: solo abrir issue cuando hay 2 fallos consecutivos.
+i18n:
+  activeIncidents: "Incidentes activos"
+  allSystemsOperational: "Todos los sistemas operativos"
+  degradedPerformance: "Rendimiento degradado"
+  fetchHistoryFail: "No se pudieron cargar los datos históricos"
+  incidents: "Incidentes"
+  liveStatus: "Estado en vivo"
+  pastIncidents: "Incidentes pasados"
+  status: "Estado"
+  upDay: "día activo"
+  upHour: "hora activa"
+  upMinute: "minuto activo"
+  upWeek: "semana activa"
+  responseTime: "Tiempo de respuesta"
+  uptime: "Disponibilidad"
+  responseTimeChartTitle: "Gráfico de tiempo de respuesta de los últimos 24 días"
+  uptimeChartTitle: "Gráfico de disponibilidad de los últimos 24 días"
