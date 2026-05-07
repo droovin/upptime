@@ -23,7 +23,10 @@ sites:
 status-website:
   cname: status.droovin.com
   logoUrl: https://droovin.com/favicon.svg
-  name: Droovin Status
+  # name aparece DOS veces: como <title> de la pestaña y como texto al lado del
+  # logo en el navbar. "Droovin Status" se duplicaba con el H1 del intro.
+  # Lo dejo como "Droovin" — limpio en tab y navbar, sin redundancia.
+  name: Droovin
   introTitle: "El estado en tiempo real de los servicios de Droovin."
   introMessage: Verificamos cada minuto que todo esté funcionando. Si ves algún componente caído, ya estamos trabajando para resolverlo.
   navbar:
@@ -31,14 +34,6 @@ status-website:
       href: /
     - title: Volver a Droovin
       href: https://droovin.com
-  customCSS: |
-    /* Ocultar footer con link al repo de GitHub */
-    footer { display: none !important; }
-    /* Logo del navbar — el wordmark de droovin.com es muy ancho. Constrenir
-       a tamaño icono y ocultar el texto duplicado "Droovin Status" del navbar
-       (el title sigue mostrándose en el <h1> del intro). */
-    nav img { max-height: 28px; width: auto; }
-    nav .logo > div { display: none; }
 
 assignees:
   - figueroabonacic

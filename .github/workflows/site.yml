@@ -38,6 +38,28 @@ jobs:
           command: "site"
         env:
           GH_PAT: ${{ secrets.GH_PAT || github.token }}
+      - name: Post-process — Droovin theme + remove footer
+        run: |
+          OUT="site/status-page/__sapper__/export"
+          # 1) Sobrescribir el color "up" verde por azul Droovin (#2563eb).
+          # Las CSS variables que pintan los componentes saludables son:
+          #   --up-border-left-color      → borde verde de cada card
+          #   --tag-up-background-color   → tag verde "OPERATIONAL"
+          #   --nav-current-border-bottom-color → underline del nav activo
+          # Mantenemos rojo (down) y amarillo (degraded) sin cambios — son
+          # señales universales que no conviene rebrandear.
+          for css in "$OUT"/themes/light.css "$OUT"/themes/dark.css; do
+            [ -f "$css" ] && sed -i -E '
+              s/--up-border-left-color: #[0-9a-fA-F]+;/--up-border-left-color: #2563eb;/g;
+              s/--tag-up-background-color: #[0-9a-fA-F]+;/--tag-up-background-color: #2563eb;/g;
+              s/--nav-current-border-bottom-color: #[0-9a-fA-F]+;/--nav-current-border-bottom-color: #2563eb;/g;
+            ' "$css"
+          done
+          # 2) Remover el footer "powered by Upptime / open source" de TODOS
+          # los HTML. Upptime no soporta customCSS/customHTML upstream, así
+          # que lo borramos en el HTML servido. Mantengo el comentario para
+          # auditoría futura.
+          find "$OUT" -name '*.html' -exec sed -i -E 's|<footer class=svelte-jbr799>.*</footer>|<!-- footer removed during post-process -->|g' {} \;
       - uses: peaceiris/actions-gh-pages@v4
         name: GitHub Pages Deploy
         with:

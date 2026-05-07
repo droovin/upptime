@@ -60,6 +60,20 @@ jobs:
           command: "site"
         env:
           GH_PAT: ${{ secrets.GH_PAT || github.token }}
+      - name: Post-process — Droovin theme + remove footer
+        # Mismo tratamiento que en site.yml. Mantenido idéntico para que ambos
+        # paths de deploy (push a .upptimerc.yml y cron diario de Static Site CI)
+        # produzcan el mismo HTML/CSS final.
+        run: |
+          OUT="site/status-page/__sapper__/export"
+          for css in "$OUT"/themes/light.css "$OUT"/themes/dark.css; do
+            [ -f "$css" ] && sed -i -E '
+              s/--up-border-left-color: #[0-9a-fA-F]+;/--up-border-left-color: #2563eb;/g;
+              s/--tag-up-background-color: #[0-9a-fA-F]+;/--tag-up-background-color: #2563eb;/g;
+              s/--nav-current-border-bottom-color: #[0-9a-fA-F]+;/--nav-current-border-bottom-color: #2563eb;/g;
+            ' "$css"
+          done
+          find "$OUT" -name '*.html' -exec sed -i -E 's|<footer class=svelte-jbr799>.*</footer>|<!-- footer removed during post-process -->|g' {} \;
       - uses: peaceiris/actions-gh-pages@v4
         name: GitHub Pages Deploy
         with:
