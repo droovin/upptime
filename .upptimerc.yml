@@ -6,31 +6,26 @@ sites:
     url: https://api.droovin.com/api/health
     expectedStatusCodes:
       - 200
-  - name: Admin
+  - name: Panel de administración
     url: https://admin.droovin.com
     expectedStatusCodes:
       - 200
-  - name: Storefront platform
+  - name: Tiendas en línea
     url: https://demo-store.droovin.com
     expectedStatusCodes:
       - 200
       - 404
-  - name: Landing
+  - name: Sitio web
     url: https://droovin.com
     expectedStatusCodes:
       - 200
-  - name: Superadmin
-    url: https://ops.droovin.com
-    expectedStatusCodes:
-      - 200
-      - 401
 
 status-website:
   cname: status.droovin.com
-  logoUrl: https://droovin.com/favicon.svg
+  logoUrl: https://droovin.com/logo.svg
   name: Droovin Status
   introTitle: "**Droovin Status** — el estado en tiempo real de los servicios que tu tienda usa."
-  introMessage: Monitoreamos cada minuto desde GitHub Actions. Si ves algún componente caído, ya estamos trabajando para resolverlo. Para soporte directo, escríbenos a soporte@droovin.com.
+  introMessage: Verificamos cada minuto que todo esté funcionando. Si ves algún componente caído, ya estamos trabajando para resolverlo. Para soporte directo, escríbenos a soporte@droovin.com.
   navbar:
     - title: Estado
       href: /
@@ -45,8 +40,6 @@ notifications:
     channel: alertas
     url: "$SLACK_WEBHOOK_URL"
 
-# Subir sample interval default a 5min (es el mínimo de GH Actions cron).
-# Bajar tasa de noise: solo abrir issue cuando hay 2 fallos consecutivos.
 i18n:
   activeIncidents: "Incidentes activos"
   allSystemsOperational: "Todos los sistemas operativos"
