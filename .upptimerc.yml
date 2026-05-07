@@ -22,11 +22,10 @@ sites:
 
 status-website:
   cname: status.droovin.com
-  logoUrl: https://droovin.com/favicon.svg
-  # name aparece DOS veces: como <title> de la pestaña y como texto al lado del
-  # logo en el navbar. "Droovin Status" se duplicaba con el H1 del intro.
-  # Lo dejo como "Droovin" — limpio en tab y navbar, sin redundancia.
-  name: Droovin
+  # Wordmark de Droovin en navbar. El "Droovin" como texto ya viene en el
+  # logo, así que el name del navbar lo seteamos vacío vía post-process.
+  logoUrl: https://droovin.com/logo.svg
+  name: " "
   introTitle: "El estado en tiempo real de los servicios de Droovin."
   introMessage: Verificamos cada minuto que todo esté funcionando. Si ves algún componente caído, ya estamos trabajando para resolverlo.
   navbar:

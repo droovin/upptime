@@ -66,14 +66,42 @@ jobs:
         # produzcan el mismo HTML/CSS final.
         run: |
           OUT="site/status-page/__sapper__/export"
-          for css in "$OUT"/themes/light.css "$OUT"/themes/dark.css; do
-            [ -f "$css" ] && sed -i -E '
-              s/--up-border-left-color: #[0-9a-fA-F]+;/--up-border-left-color: #2563eb;/g;
-              s/--tag-up-background-color: #[0-9a-fA-F]+;/--tag-up-background-color: #2563eb;/g;
-              s/--nav-current-border-bottom-color: #[0-9a-fA-F]+;/--nav-current-border-bottom-color: #2563eb;/g;
-            ' "$css"
-          done
+          [ -f "$OUT/themes/light.css" ] && sed -i -E '
+            s/--up-border-left-color: #[0-9a-fA-F]+;/--up-border-left-color: #2563eb;/g;
+            s/--tag-up-background-color: #[0-9a-fA-F]+;/--tag-up-background-color: #2563eb;/g;
+            s/--nav-current-border-bottom-color: #[0-9a-fA-F]+;/--nav-current-border-bottom-color: #2563eb;/g;
+          ' "$OUT/themes/light.css"
+          [ -f "$OUT/themes/dark.css" ] && cat > "$OUT/themes/dark.css" <<'CSS'
+          :root {
+            --body-background-color: #0a0a0a;
+            --body-text-color: #fafafa;
+            --card-background-color: #18181b;
+            --nav-background-color: #18181b;
+            --nav-border-bottom-color: #27272a;
+            --nav-current-border-bottom-color: #2563eb;
+            --card-border-color: #27272a;
+            --down-border-left-color: #ef4444;
+            --down-background-color: #450a0a;
+            --degraded-border-left-color: #f59e0b;
+            --up-border-left-color: #2563eb;
+            --tag-color: #fafafa;
+            --tag-up-background-color: #2563eb;
+            --tag-down-background-color: #ef4444;
+            --tag-degraded-background-color: #f59e0b;
+            --change-background-color: #f59e0b;
+            --error-button-border-color: #1d4ed8;
+            --error-button-background-color: #2563eb;
+            --error-button-color: #ffffff;
+            --submit-button-border-color: #1d4ed8;
+            --submit-button-background-color: #2563eb;
+            --submit-button-color: #ffffff;
+            --graph-opacity: 1;
+            --graph-filter: none;
+          }
+          CSS
           find "$OUT" -name '*.html' -exec sed -i -E 's|<footer class=svelte-jbr799>.*</footer>|<!-- footer removed during post-process -->|g' {} \;
+          STYLE='<style>nav .logo img{max-height:24px;width:auto}nav .logo>div{display:none}main h1{font-weight:700;letter-spacing:-0.02em}</style>'
+          find "$OUT" -name '*.html' -exec sed -i "s|</head>|${STYLE}</head>|" {} \;
       - uses: peaceiris/actions-gh-pages@v4
         name: GitHub Pages Deploy
         with:
