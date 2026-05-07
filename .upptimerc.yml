@@ -31,6 +31,10 @@ status-website:
       href: /
     - title: Droovin
       href: https://droovin.com
+  # Esconde el footer "powered by Upptime" + link al repo en github.com.
+  # Upptime no tiene flag nativo para sacarlo, pero permite inyectar CSS.
+  customCSS: |
+    footer { display: none !important; }
 
 assignees:
   - figueroabonacic
