@@ -32,12 +32,10 @@ jobs:
         with:
           ref: ${{ github.head_ref }}
           token: ${{ secrets.GH_PAT || github.token }}
-      - name: Update template
-        uses: upptime/uptime-monitor@v1.41.2
-        with:
-          command: "update-template"
-        env:
-          GH_PAT: ${{ secrets.GH_PAT || github.token }}
+      # update-template skippeado a proposito: requiere PAT con scope `workflow`
+      # para sobrescribir archivos en .github/workflows. El GITHUB_TOKEN default
+      # no lo permite. Perdemos auto-update del template (corre semanal en
+      # upstream) pero lo manejamos manualmente cuando haya nuevas releases.
       - name: Update response time
         uses: upptime/uptime-monitor@v1.41.2
         with:
