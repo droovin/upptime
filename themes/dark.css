@@ -1,15 +1,15 @@
 :root {
-  --body-background-color: #0a0a0a;
+  --body-background-color: #0a0a0a;     /* near-black */
   --body-text-color: #fafafa;
-  --card-background-color: #18181b;
+  --card-background-color: #18181b;     /* zinc-900 */
   --nav-background-color: #18181b;
-  --nav-border-bottom-color: #27272a;
+  --nav-border-bottom-color: #27272a;   /* zinc-800 */
   --nav-current-border-bottom-color: #2563eb;
   --card-border-color: #27272a;
-  --down-border-left-color: #ef4444;
-  --down-background-color: #450a0a;
-  --degraded-border-left-color: #f59e0b;
-  --up-border-left-color: #2563eb;
+  --down-border-left-color: #ef4444;    /* red-500 */
+  --down-background-color: #450a0a;     /* red-950 */
+  --degraded-border-left-color: #f59e0b;/* amber-500 */
+  --up-border-left-color: #2563eb;      /* Droovin blue */
   --tag-color: #fafafa;
   --tag-up-background-color: #2563eb;
   --tag-down-background-color: #ef4444;
