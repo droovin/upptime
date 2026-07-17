@@ -58,17 +58,19 @@
     "url": "https://droovin.com",
     "icon": "https://icons.duckduckgo.com/ip3/droovin.com.ico",
     "slug": "sitio-web",
-    "status": "up",
+    "status": "down",
     "uptime": "100.00%",
-    "uptimeDay": "100.00%",
+    "uptimeDay": "99.99%",
     "uptimeWeek": "100.00%",
     "uptimeMonth": "100.00%",
     "uptimeYear": "100.00%",
     "time": 242,
-    "timeDay": 407,
-    "timeWeek": 293,
-    "timeMonth": 203,
+    "timeDay": 323,
+    "timeWeek": 286,
+    "timeMonth": 204,
     "timeYear": 242,
-    "dailyMinutesDown": {}
+    "dailyMinutesDown": {
+      "2026-07-17": 0
+    }
   }
 ]
